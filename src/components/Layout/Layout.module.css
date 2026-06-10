@@ -1,0 +1,223 @@
+.layoutWrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  width: 100%;
+}
+
+.header {
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: var(--space-md) 0;
+  backdrop-filter: blur(8px);
+  background-color: rgb(from var(--bg-primary) r g b / 0.8);
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.logoIcon {
+  font-size: 1.5rem;
+}
+
+.logoText {
+  font-size: 1.25rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  /* Removemos o preenchimento transparente para evitar que o texto suma */
+  color: var(--text-primary);
+}
+
+
+.logoAnimatedWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  height: 1.5em;
+  vertical-align: middle;
+}
+
+.logoAnimatedItem {
+  position: absolute;
+  white-space: nowrap;
+}
+
+.themeToggle {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  border: 1px solid var(--border-color);
+}
+
+.themeToggle:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.mainContent {
+  flex: 1;
+}
+
+/* Footer Moderno */
+.footer {
+  background-color: var(--bg-secondary);
+  padding: var(--space-2xl) 0 var(--space-xl) 0;
+  border-top: 1px solid var(--border-color);
+  margin-top: var(--space-2xl);
+}
+
+.footerTop {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2xl);
+  margin-bottom: var(--space-xl);
+}
+
+.projectInfo {
+  flex: 1;
+  max-width: 600px;
+}
+
+.footerTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.footerSynopsis {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.developerInfo {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.devName {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.socialLinks {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: flex-end;
+}
+
+.socialIcon {
+  width: 40px;
+  height: 40px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.socialIcon:hover {
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow);
+}
+
+.activeAbout {
+  background-color: var(--accent-primary);
+  color: white !important;
+  border-color: var(--accent-primary);
+}
+
+/* Expansão Sobre Mim */
+.aboutExpanded {
+  overflow: hidden;
+  margin-bottom: var(--space-xl);
+}
+
+.aboutContent {
+  background-color: var(--object-bg);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--card-shadow);
+}
+
+.aboutContent h5 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+  color: var(--accent-primary);
+}
+
+.aboutContent p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.footerBottom {
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.footerBottom p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .footerTop {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .developerInfo {
+    text-align: center;
+  }
+  
+  .socialLinks {
+    justify-content: center;
+  }
+  
+  .projectInfo {
+    max-width: 100%;
+  }
+}

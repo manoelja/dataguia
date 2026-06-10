@@ -1,0 +1,58 @@
+.filterContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  padding: var(--space-md) 0;
+  justify-content: center;
+  margin-bottom: var(--space-xl);
+}
+
+.filterChip {
+  position: relative;
+  padding: var(--space-sm) var(--space-xl);
+  border-radius: var(--radius-xl);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--chip-text);
+  background-color: var(--chip-bg);
+  transition: color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.filterChip:hover {
+  color: var(--accent-primary);
+}
+
+.active {
+  color: var(--chip-active-text);
+}
+
+.active:hover {
+  color: var(--chip-active-text);
+}
+
+.activePill {
+  position: absolute;
+  inset: 0;
+  background-color: var(--chip-active-bg);
+  border-radius: var(--radius-xl);
+  z-index: 0;
+}
+
+.chipText {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 640px) {
+  .filterContainer {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: var(--space-md);
+    scrollbar-width: none;
+  }
+  
+  .filterContainer::-webkit-scrollbar {
+    display: none;
+  }
+}
