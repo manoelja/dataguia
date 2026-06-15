@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Layout } from '../components/Layout/Layout';
 import Filter from '../components/Filter/Filter';
 import Section from '../components/Section/Section';
+import { useFilter } from '../hooks/useFilter';
 import { contentData } from '../data/content';
-import type { Category } from '../data/types';
 import styles from './Home.module.css';
 
 const Home: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState<Category>('Todos');
+  const { activeFilter, setActiveFilter } = useFilter();
 
   return (
     <Layout>

@@ -11,6 +11,11 @@
   display: flex;
   align-items: center;
   transition: color var(--transition-fast);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: inherit;
 }
 
 .breadcrumbLink:hover {
@@ -42,6 +47,7 @@
   width: fit-content;
   transition: all var(--transition-fast);
   border: 1px solid var(--border-color); /* Usa a nova borda suave padrão */
+  cursor: pointer;
 }
 
 .backButton:hover {
@@ -111,10 +117,13 @@
   transition: all 0.2s ease-in-out;
 }
 
-/* Efeito interativo opcional para as ferramentas */
+/* Efeito interativo para as ferramentas */
 .toolChip:hover {
-  border-color: #0d9488; /* Tom verde-água/teal mais escuro ao passar o mouse */
-  background-color: #f0fdfa;
+  border-color: var(--accent-primary);
+  background-color: var(--accent-primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
 }
 
 .relatedSection {
@@ -157,6 +166,12 @@
   font-size: 0.75rem;
   font-weight: 700;
   z-index: 10;
+}
+
+.noResults {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: var(--space-xl);
 }
 
 @media (max-width: 768px) {

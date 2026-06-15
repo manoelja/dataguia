@@ -94,10 +94,6 @@ export const Footer: React.FC = () => {
             </motion.div>
           )}
         </AnimatePresence>
-
-        <div className={styles.footerBottom}>
-          <p>© 2025 Guia de Estudos da Área de Dados — Desenvolvido por Manoel</p>
-        </div>
       </div>
     </footer>
   );

@@ -1,14 +1,18 @@
 import React from 'react';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link, Navigate, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, ChevronRight, Home as HomeIcon } from 'lucide-react';
 import { Layout } from '../components/Layout/Layout';
 import { contentData } from '../data/content';
 import Card from '../components/Card/Card';
+import Filter from '../components/Filter/Filter';
+import { useFilter } from '../hooks/useFilter';
 import styles from './DetailPage.module.css';
 
 const DetailPage: React.FC = () => {
   const { category, slug } = useParams<{ category: string; slug: string }>();
+  const { activeFilter, setActiveFilter } = useFilter();
+  const navigate = useNavigate();
 
   // Find the item in contentData
   const item = contentData
@@ -27,7 +31,9 @@ const DetailPage: React.FC = () => {
 
   // Find related items (same section/category)
   const section = contentData.find((s) => s.items.some((i) => i.id === item.id));
-  const relatedItems = section?.items || [];
+  const relatedItems = (section?.items || []).filter(related => 
+    activeFilter === 'Todos' || related.categories.includes(activeFilter)
+  );
 
   return (
     <Layout>
@@ -37,18 +43,18 @@ const DetailPage: React.FC = () => {
       </Helmet>
 
       <nav className={styles.breadcrumb}>
-        <Link to="/" className={styles.breadcrumbLink}>
+        <button onClick={() => navigate('/')} className={styles.breadcrumbLink} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
           <HomeIcon size={16} />
-        </Link>
+        </button>
         <ChevronRight size={16} className={styles.separator} />
         <span className={styles.breadcrumbCurrent}>{item.title}</span>
       </nav>
 
       <div className={styles.header}>
-        <Link to="/" className={styles.backButton}>
+        <button onClick={() => navigate(-1)} className={styles.backButton}>
           <ArrowLeft size={20} />
           Voltar para a Home
-        </Link>
+        </button>
         <h1 className={styles.title}>{item.title}</h1>
       </div>
 
@@ -79,6 +85,9 @@ const DetailPage: React.FC = () => {
 
         <section className={styles.relatedSection}>
           <h2 className={styles.relatedTitle}>Explore mais conteúdos desta categoria</h2>
+          
+          <Filter activeFilter={activeFilter} onFilterChange={setActiveFilter} />
+
           <div className={styles.relatedGrid}>
             {relatedItems.map((related) => (
               <div 
@@ -92,6 +101,9 @@ const DetailPage: React.FC = () => {
               </div>
             ))}
           </div>
+          {relatedItems.length === 0 && (
+            <p className={styles.noResults}>Nenhum conteúdo encontrado para este filtro nesta categoria.</p>
+          )}
         </section>
       </div>
     </Layout>
