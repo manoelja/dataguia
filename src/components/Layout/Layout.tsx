@@ -95,6 +95,9 @@ export const Footer: React.FC = () => {
           )}
         </AnimatePresence>
       </div>
+      <div className={styles.footerBottom}>
+        <p>© 2026 DS.Manoel. Todos os direitos reservados.</p>
+      </div>
     </footer>
   );
 };
