@@ -51,7 +51,7 @@ const DetailPage: React.FC = () => {
       </nav>
 
       <div className={styles.header}>
-        <button onClick={() => navigate(-1)} className={styles.backButton}>
+        <button onClick={() => navigate('/')} className={styles.backButton}>
           <ArrowLeft size={20} />
           Voltar para a Home
         </button>
@@ -62,30 +62,41 @@ const DetailPage: React.FC = () => {
         <section className={styles.intro}>
           <p className={styles.shortDescription}>{item.shortDescription}</p>
           <div className={styles.mainDescription}>
-            <h2>Sobre a Profissão</h2>
+            <h2>Sobre</h2>
             <p>{item.fullDescription}</p>
           </div>
         </section>
 
-        {/* Placeholders for practical content */}
-        <section className={styles.details}>
-          <div className={styles.detailBlock}>
-            <h2>O que faz no dia a dia?</h2>
-            <p>Este profissional atua na interseção entre tecnologia e negócios, garantindo que os dados gerem valor real para a organização.</p>
-          </div>
-          <div className={styles.detailBlock}>
-            <h2>Principais Ferramentas</h2>
-            <div className={styles.toolChips}>
-              <span className={styles.toolChip}>Python</span>
-              <span className={styles.toolChip}>SQL</span>
-              <span className={styles.toolChip}>Cloud</span>
-            </div>
-          </div>
-        </section>
+        {item.details && item.details.length > 0 && (
+          <section className={styles.details}>
+            {item.details.map((detail, idx) => (
+              <div key={idx} className={styles.detailBlock}>
+                <h2>{detail.label}</h2>
+                {detail.type === 'text' && (
+                  <p>{detail.content as string}</p>
+                )}
+                {detail.type === 'list' && (
+                  <ul className={styles.detailList}>
+                    {(detail.content as string[]).map((li, lidx) => (
+                      <li key={lidx}>{li}</li>
+                    ))}
+                  </ul>
+                )}
+                {detail.type === 'chips' && (
+                  <div className={styles.toolChips}>
+                    {(detail.content as string[]).map((chip, cidx) => (
+                      <span key={cidx} className={styles.toolChip}>{chip}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </section>
+        )}
 
         <section className={styles.relatedSection}>
           <h2 className={styles.relatedTitle}>Explore mais conteúdos desta categoria</h2>
-          
+
           <Filter activeFilter={activeFilter} onFilterChange={setActiveFilter} />
 
           <div className={styles.relatedGrid}>
