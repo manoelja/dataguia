@@ -14,8 +14,7 @@ const Card: React.FC<CardProps> = ({ item }) => {
   const IconComponent = (Icons as any)[item.icon] || Icons.HelpCircle;
 
   return (
-    <motion.div 
-      layout
+    <div 
       className={`${styles.card} ${isExpanded ? styles.expanded : ''}`}
       onClick={() => setIsExpanded(!isExpanded)}
     >
@@ -30,28 +29,22 @@ const Card: React.FC<CardProps> = ({ item }) => {
 
       <AnimatePresence>
         {isExpanded && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className={styles.expandedContent}
+            className={styles.footerContainer}
           >
-            <p className={styles.fullDescription}>{item.fullDescription}</p>
-            {item.additionalInfo && (
-              <ul className={styles.additionalInfo}>
-                {item.additionalInfo.map((info, idx) => (
-                  <li key={idx}>{info}</li>
-                ))}
-              </ul>
-            )}
-            <Link to={item.path} className={styles.continueButton} onClick={(e) => e.stopPropagation()}>
-              Continuar
-              <Icons.ArrowRight size={16} />
-            </Link>
+            <div className={styles.footer}>
+              <Link to={item.path} className={styles.continueButton} onClick={(e) => e.stopPropagation()}>
+                Continuar
+                <Icons.ArrowRight size={16} />
+              </Link>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link, Navigate, useNavigate } from 'react-router-dom';
+import { useParams, Navigate, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, ChevronRight, Home as HomeIcon } from 'lucide-react';
 import { Layout } from '../components/Layout/Layout';
@@ -63,7 +63,25 @@ const DetailPage: React.FC = () => {
           <p className={styles.shortDescription}>{item.shortDescription}</p>
           <div className={styles.mainDescription}>
             <h2>Sobre</h2>
-            <p>{item.fullDescription}</p>
+            <div className={styles.richText}>
+              {item.fullDescription.split(/\n\n+/).map((block, idx) => {
+                // Renderiza linhas que começam com ** como subtítulos
+                if (block.startsWith('**') && block.endsWith('**')) {
+                  return <h3 key={idx} className={styles.richSubtitle}>{block.replace(/\*\*/g, '')}</h3>;
+                }
+                // Renderiza parágrafos com suporte a **negrito** inline
+                const parts = block.split(/(\*\*[^*]+\*\*)/g);
+                return (
+                  <p key={idx} className={styles.richParagraph}>
+                    {parts.map((part, pIdx) =>
+                      part.startsWith('**') && part.endsWith('**')
+                        ? <strong key={pIdx}>{part.slice(2, -2)}</strong>
+                        : part
+                    )}
+                  </p>
+                );
+              })}
+            </div>
           </div>
         </section>
 
