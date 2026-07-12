@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Layout } from '../components/Layout/Layout';
@@ -6,10 +6,17 @@ import Filter from '../components/Filter/Filter';
 import Section from '../components/Section/Section';
 import { useFilter } from '../hooks/useFilter';
 import { contentData } from '../data/content';
+import { restoreHomeScrollPosition } from '../hooks/useScrollMemory';
 import styles from './Home.module.css';
 
 const Home: React.FC = () => {
   const { activeFilter, setActiveFilter } = useFilter();
+
+  useEffect(() => {
+    // Restore scroll position when returning from a DetailPage.
+    // The position was saved by the Card component at click time.
+    restoreHomeScrollPosition();
+  }, []);
 
   return (
     <Layout>

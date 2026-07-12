@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import * as Icons from 'lucide-react';
 import type { CardItem } from '../../data/types';
+import { saveHomeScrollPosition } from '../../hooks/useScrollMemory';
 import styles from './Card.module.css';
 
 interface CardProps {
@@ -36,7 +37,17 @@ const Card: React.FC<CardProps> = ({ item }) => {
             className={styles.footerContainer}
           >
             <div className={styles.footer}>
-              <Link to={item.path} className={styles.continueButton} onClick={(e) => e.stopPropagation()}>
+              <Link
+                to={item.path}
+                className={styles.continueButton}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  // Save scroll position HERE — at the exact click moment,
+                  // before React Router navigates and before any lifecycle
+                  // or scroll reset runs.
+                  saveHomeScrollPosition();
+                }}
+              >
                 Continuar
                 <Icons.ArrowRight size={16} />
               </Link>

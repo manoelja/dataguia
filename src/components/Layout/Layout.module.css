@@ -152,10 +152,32 @@
 }
 
 .socialIcon:hover {
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: var(--card-shadow);
+}
+
+/* Brand-specific hover colors */
+.socialGithub:hover {
+  color: #fff;
+  background-color: #24292e;
+  border-color: #24292e;
+}
+
+.socialLinkedin:hover {
+  color: #fff;
+  background-color: #0a66c2;
+  border-color: #0a66c2;
+}
+
+.socialPortfolio:hover {
   color: var(--accent-primary);
   border-color: var(--accent-primary);
-  transform: translateY(-2px);
-  box-shadow: var(--card-shadow);
+  background-color: var(--object-bg);
+}
+
+.socialAbout:hover {
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
 }
 
 .activeAbout {
