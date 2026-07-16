@@ -1,4 +1,4 @@
-const SCROLL_KEY = 'home_scroll_position';
+const getScrollKey = () => `scroll:${window.location.pathname}`;
 
 /**
  * Saves the current window.scrollY to sessionStorage.
@@ -7,7 +7,7 @@ const SCROLL_KEY = 'home_scroll_position';
  * or React lifecycle runs and can alter the scroll position.
  */
 export function saveHomeScrollPosition(): void {
-  sessionStorage.setItem(SCROLL_KEY, String(window.scrollY));
+  sessionStorage.setItem(getScrollKey(), String(window.scrollY));
 }
 
 /**
@@ -17,9 +17,10 @@ export function saveHomeScrollPosition(): void {
  * (React commit + browser layout) is fully complete.
  */
 export function restoreHomeScrollPosition(): void {
-  const saved = sessionStorage.getItem(SCROLL_KEY);
+  const key = getScrollKey();
+  const saved = sessionStorage.getItem(key);
   if (!saved) return;
-  sessionStorage.removeItem(SCROLL_KEY);
+  sessionStorage.removeItem(key);
   const y = Number(saved);
   if (!y) return;
 
