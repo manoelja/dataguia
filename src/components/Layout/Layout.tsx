@@ -69,13 +69,13 @@ export const Footer: React.FC = () => {
           <div className={styles.developerInfo}>
             <h4 className={styles.devName}>Desenvolvido por Manoel — Data Scientist</h4>
             <div className={styles.socialLinks}>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.socialGithub}`} title="GitHub" aria-label="GitHub">
+              <a href="https://github.com/manoelja" target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.socialGithub}`} title="GitHub" aria-label="GitHub">
                 <GithubIcon size={20} />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.socialLinkedin}`} title="LinkedIn" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/in/manoel-ara%C3%BAjo-79b62239b?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.socialLinkedin}`} title="LinkedIn" aria-label="LinkedIn">
                 <LinkedinIcon size={20} />
               </a>
-              <a href="https://portfolio.com" target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.socialPortfolio}`} title="Portfólio" aria-label="Portfólio">
+              <a href="https://github.com/manoelja/dataguia" target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.socialPortfolio}`} title="Portfólio" aria-label="Portfólio">
                 <Globe size={20} />
               </a>
               <button 

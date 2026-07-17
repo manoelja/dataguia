@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import type { SectionData, Category } from '../../data/types';
 import Card from '../Card/Card';
+import { useSectionShowAll } from '../../hooks/useSectionState';
 import styles from './Section.module.css';
 
 interface SectionProps {
@@ -11,7 +12,7 @@ interface SectionProps {
 }
 
 const Section: React.FC<SectionProps> = ({ section, activeFilter = 'Todos' }) => {
-  const [showAll, setShowAll] = useState(false);
+  const [showAll, setShowAll] = useSectionShowAll(section.id);
 
   const filteredItems = section.items.filter(item => 
     activeFilter === 'Todos' || item.categories.includes(activeFilter)

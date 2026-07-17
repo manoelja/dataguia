@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import * as Icons from 'lucide-react';
 import type { CardItem } from '../../data/types';
 import { saveHomeScrollPosition } from '../../hooks/useScrollMemory';
+import { useCardExpanded } from '../../hooks/useSectionState';
 import styles from './Card.module.css';
 
 interface CardProps {
@@ -11,7 +12,7 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ item }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useCardExpanded(item.id);
   const IconComponent = (Icons as any)[item.icon] || Icons.HelpCircle;
 
   return (
