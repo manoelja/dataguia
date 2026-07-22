@@ -88,9 +88,8 @@
 
 /* Footer Moderno */
 .footer {
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-primary);
   padding: var(--space-2xl) 0 var(--space-xl) 0;
-  border-top: 1px solid var(--border-color);
   margin-top: var(--space-2xl);
 }
 
@@ -156,6 +155,13 @@
   box-shadow: var(--card-shadow);
 }
 
+.portfolioIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
 /* Brand-specific hover colors */
 .socialGithub:hover {
   color: #fff;
@@ -194,28 +200,27 @@
 
 .aboutContent {
   background-color: var(--object-bg);
-  padding: var(--space-lg);
+  padding: var(--space-md);
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-color);
   box-shadow: var(--card-shadow);
 }
 
 .aboutContent h5 {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-xs);
   color: var(--accent-primary);
 }
 
 .aboutContent p {
   color: var(--text-secondary);
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 0.85rem;
+  line-height: 1.5;
 }
 
 .footerBottom {
   padding-top: var(--space-xl);
-  border-top: 1px solid var(--border-color);
   text-align: center;
 }
 

@@ -46,13 +46,16 @@
 
 @media (max-width: 640px) {
   .filterContainer {
-    justify-content: flex-start;
-    overflow-x: auto;
-    padding-bottom: var(--space-md);
-    scrollbar-width: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xs);
+    justify-items: center;
   }
-  
-  .filterContainer::-webkit-scrollbar {
-    display: none;
+
+  .filterChip {
+    width: 100%;
+    padding: 10px 8px;
+    font-size: 0.75rem;
+    text-align: center;
   }
 }

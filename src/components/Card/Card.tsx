@@ -16,7 +16,7 @@ const Card: React.FC<CardProps> = ({ item }) => {
   const IconComponent = (Icons as any)[item.icon] || Icons.HelpCircle;
 
   return (
-    <div 
+    <div
       className={`${styles.card} ${isExpanded ? styles.expanded : ''}`}
       onClick={() => setIsExpanded(!isExpanded)}
     >
@@ -26,36 +26,44 @@ const Card: React.FC<CardProps> = ({ item }) => {
         </div>
         <h3 className={styles.title}>{item.title}</h3>
       </div>
-      
-      <p className={styles.shortDescription}>{item.shortDescription}</p>
 
-      <AnimatePresence>
-        {isExpanded && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className={styles.footerContainer}
-          >
-            <div className={styles.footer}>
+      <div className={styles.contentArea}>
+        <AnimatePresence mode="wait">
+          {!isExpanded ? (
+            <motion.p
+              key="description"
+              className={styles.shortDescription}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2 }}
+            >
+              {item.shortDescription}
+            </motion.p>
+          ) : (
+            <motion.div
+              key="button"
+              className={styles.footer}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2 }}
+            >
               <Link
                 to={item.path}
                 className={styles.continueButton}
                 onClick={(e) => {
                   e.stopPropagation();
-                  // Save scroll position HERE — at the exact click moment,
-                  // before React Router navigates and before any lifecycle
-                  // or scroll reset runs.
                   saveHomeScrollPosition();
                 }}
               >
                 Continuar
                 <Icons.ArrowRight size={16} />
               </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 };

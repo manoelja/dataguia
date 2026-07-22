@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sun, Moon, User, Globe } from 'lucide-react';
+import { Sun, Moon, User } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../../hooks/useTheme';
 import styles from './Layout.module.css';
@@ -69,14 +69,14 @@ export const Footer: React.FC = () => {
           <div className={styles.developerInfo}>
             <h4 className={styles.devName}>Desenvolvido por Manoel — Data Scientist</h4>
             <div className={styles.socialLinks}>
-              <a href="https://github.com/manoelja" target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.socialGithub}`} title="GitHub" aria-label="GitHub">
+              <a href="https://github.com/manoelja/dataguia" target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.socialGithub}`} title="GitHub" aria-label="GitHub">
                 <GithubIcon size={20} />
               </a>
               <a href="https://www.linkedin.com/in/manoel-ara%C3%BAjo-79b62239b?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.socialLinkedin}`} title="LinkedIn" aria-label="LinkedIn">
                 <LinkedinIcon size={20} />
               </a>
-              <a href="https://github.com/manoelja/dataguia" target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.socialPortfolio}`} title="Portfólio" aria-label="Portfólio">
-                <Globe size={20} />
+              <a href="https://portfolio-manoelja.vercel.app" target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.socialPortfolio}`} title="Portfólio" aria-label="Portfólio">
+                <img src="/portfolio-manoelja.svg" alt="Portfólio" className={styles.portfolioIcon} />
               </a>
               <button 
                 className={`${styles.socialIcon} ${styles.socialAbout} ${showAbout ? styles.activeAbout : ''}`} 
@@ -99,11 +99,11 @@ export const Footer: React.FC = () => {
               className={styles.aboutExpanded}
             >
               <div className={styles.aboutContent}>
-                <h5>Sobre o Desenvolvedor</h5>
+                <h5>Sobre mim</h5>
                 <p>
-                  Manoel é um Data Scientist apaixonado por transformar dados brutos em inteligência e por democratizar 
-                  o acesso ao conhecimento técnico. Com experiência em modelagem preditiva e arquitetura de dados, 
-                  criou esta plataforma como um recurso para a comunidade brasileira de tecnologia.
+                  Sou Manoel, Data Scientist e criador deste guia. 
+                  Construí o DataGuia porque sempre achei que faltava um mapa claro para 
+                  quem quer entrar na área de dados...
                 </p>
               </div>
             </motion.div>

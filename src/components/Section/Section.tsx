@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import type { SectionData, Category } from '../../data/types';
 import Card from '../Card/Card';
@@ -11,10 +11,23 @@ interface SectionProps {
   activeFilter?: Category;
 }
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
+};
+
 const Section: React.FC<SectionProps> = ({ section, activeFilter = 'Todos' }) => {
   const [showAll, setShowAll] = useSectionShowAll(section.id);
 
-  const filteredItems = section.items.filter(item => 
+  const filteredItems = section.items.filter(item =>
     activeFilter === 'Todos' || item.categories.includes(activeFilter)
   );
 
@@ -24,27 +37,27 @@ const Section: React.FC<SectionProps> = ({ section, activeFilter = 'Todos' }) =>
   return (
     <section className={styles.section}>
       <h2 className={styles.sectionTitle}>{section.title}</h2>
-      
-      <motion.div layout className={styles.grid}>
-        <AnimatePresence mode='popLayout'>
-          {visibleItems.map(item => (
-            <motion.div
-              key={item.id}
-              layout
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Card item={item} />
-            </motion.div>
-          ))}
-        </AnimatePresence>
+
+      <motion.div
+        className={styles.grid}
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-50px' }}
+      >
+        {visibleItems.map(item => (
+          <motion.div
+            key={item.id}
+            variants={itemVariants}
+          >
+            <Card item={item} />
+          </motion.div>
+        ))}
       </motion.div>
 
       {hasMore && (
-        <button 
-          className={styles.viewMoreButton} 
+        <button
+          className={styles.viewMoreButton}
           onClick={() => setShowAll(!showAll)}
         >
           {showAll ? (
