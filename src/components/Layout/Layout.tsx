@@ -75,8 +75,8 @@ export const Footer: React.FC = () => {
               <a href="https://www.linkedin.com/in/manoel-ara%C3%BAjo-79b62239b?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.socialLinkedin}`} title="LinkedIn" aria-label="LinkedIn">
                 <LinkedinIcon size={20} />
               </a>
-              <a href="https://portfolio-manoelja.vercel.app" target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.socialPortfolio}`} title="Portfólio" aria-label="Portfólio">
-                <img src="/portfolio-manoelja.svg" alt="Portfólio" className={styles.portfolioIcon} />
+              <a href="https://manoelja.vercel.app" target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.socialPortfolio}`} title="Portfólio" aria-label="Portfólio">
+                <img src="/manoelja.svg" alt="Portfólio" className={styles.portfolioIcon} />
               </a>
               <button 
                 className={`${styles.socialIcon} ${styles.socialAbout} ${showAbout ? styles.activeAbout : ''}`} 
