@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion, type Variants } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useInView, type Variants } from 'framer-motion';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import type { SectionData, Category } from '../../data/types';
 import Card from '../Card/Card';
@@ -34,16 +34,19 @@ const Section: React.FC<SectionProps> = ({ section, activeFilter = 'Todos' }) =>
   const visibleItems = showAll ? filteredItems : filteredItems.slice(0, 3);
   const hasMore = filteredItems.length > 3;
 
+  const gridRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(gridRef, { once: true, margin: '-50px' });
+
   return (
     <section className={styles.section}>
       <h2 className={styles.sectionTitle}>{section.title}</h2>
 
       <motion.div
+        ref={gridRef}
         className={styles.grid}
         variants={containerVariants}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-50px' }}
+        animate={inView ? 'visible' : 'hidden'}
       >
         {visibleItems.map(item => (
           <motion.div
