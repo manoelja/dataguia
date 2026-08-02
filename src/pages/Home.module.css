@@ -59,6 +59,21 @@
   gap: var(--space-xl);
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Padrão tablet: compacta o hero para não ficar esticado */
+  .hero {
+    padding: var(--space-xl) 0;
+  }
+
+  .heroTitle {
+    font-size: 2.6rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.15rem;
+  }
+}
+
 @media (max-width: 768px) {
   .heroTitle {
     font-size: 2.25rem;

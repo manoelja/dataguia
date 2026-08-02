@@ -50,3 +50,18 @@
   background-color: var(--accent-primary);
   color: white;
 }
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Padrão tablet: espaçamento compacto e grid em 2 colunas */
+  .section {
+    padding: var(--space-xl) 0;
+  }
+
+  .sectionTitle {
+    font-size: 1.6rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

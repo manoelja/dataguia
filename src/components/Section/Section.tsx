@@ -31,8 +31,8 @@ const Section: React.FC<SectionProps> = ({ section, activeFilter = 'Todos' }) =>
     activeFilter === 'Todos' || item.categories.includes(activeFilter)
   );
 
-  const visibleItems = showAll ? filteredItems : filteredItems.slice(0, 3);
-  const hasMore = filteredItems.length > 3;
+  const visibleItems = showAll ? filteredItems : filteredItems.slice(0, 4);
+  const hasMore = filteredItems.length > 4;
 
   const gridRef = useRef<HTMLDivElement>(null);
   const inView = useInView(gridRef, { once: true, margin: '-50px' });

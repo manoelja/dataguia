@@ -198,6 +198,17 @@
   padding: var(--space-xl);
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Padrão tablet: título compacto e cards relacionados em 2 colunas */
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .relatedGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .details {
     grid-template-columns: 1fr;
