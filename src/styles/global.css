@@ -7,13 +7,21 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+html, body {
+  overscroll-behavior: none; /* Bloqueia o pull-to-refresh nativo no mobile (igual ao data-base-analysis) */
+}
+
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.5;
-  transition: background-color var(--transition-normal), color var(--transition-normal);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Remove o atraso de 300ms de duplo-toque em controles (igual ao data-base-analysis) */
+button, a, [role="button"] {
+  touch-action: manipulation;
 }
 
 a {
