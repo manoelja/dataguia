@@ -4,6 +4,7 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 import type { SectionData, Category } from '../../data/types';
 import Card from '../Card/Card';
 import { useSectionShowAll } from '../../hooks/useSectionState';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 import styles from './Section.module.css';
 
 interface SectionProps {
@@ -31,8 +32,12 @@ const Section: React.FC<SectionProps> = ({ section, activeFilter = 'Todos' }) =>
     activeFilter === 'Todos' || item.categories.includes(activeFilter)
   );
 
-  const visibleItems = showAll ? filteredItems : filteredItems.slice(0, 4);
-  const hasMore = filteredItems.length > 4;
+  // Mobile (≤768px) mostra 4 cards por padrão; desktop mostra 6.
+  const isDesktop = useMediaQuery('(min-width: 769px)');
+  const visibleCount = isDesktop ? 6 : 4;
+
+  const visibleItems = showAll ? filteredItems : filteredItems.slice(0, visibleCount);
+  const hasMore = filteredItems.length > visibleCount;
 
   const gridRef = useRef<HTMLDivElement>(null);
   const inView = useInView(gridRef, { once: true, margin: '-50px' });
