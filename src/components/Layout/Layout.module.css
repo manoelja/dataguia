@@ -17,7 +17,9 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  padding: var(--space-md) 0;
+  /* safe-area-inset-top: em edge-to-edge, o fundo do header se estende atrás
+     da barra de status e o conteúdo fica abaixo dela */
+  padding: calc(var(--space-md) + env(safe-area-inset-top, 0px)) 0 var(--space-md) 0;
   backdrop-filter: blur(8px);
   background-color: rgb(from var(--bg-primary) r g b / 0.8);
 }
@@ -89,7 +91,9 @@
 /* Footer Moderno */
 .footer {
   background-color: var(--bg-primary);
-  padding: var(--space-2xl) 0 var(--space-xl) 0;
+  /* safe-area-inset-bottom: em edge-to-edge, o fundo do footer se estende atrás
+     da barra de navegação (seguindo o tema) e o conteúdo fica acima dela */
+  padding: var(--space-2xl) 0 calc(var(--space-xl) + env(safe-area-inset-bottom, 0px)) 0;
   margin-top: var(--space-2xl);
 }
 
