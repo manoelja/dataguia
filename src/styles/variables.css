@@ -1,6 +1,7 @@
 :root {
   /* Colors - Light Mode */
-  color-scheme: light;
+  /* NOTA: sem `color-scheme` — no Chrome Android ele pinta a borda inferior
+     do navegador de preto puro (#000), criando faixa visível no mobile. */
   --bg-primary: #ffffff;
   --bg-secondary: #f8fafc;
   --text-primary: #0f172a;
@@ -37,7 +38,6 @@
 }
 
 [data-theme='dark'] {
-  color-scheme: dark;
   --bg-primary: #0f172a;
   --bg-secondary: #1e293b;
   --text-primary: #f8fafc;
