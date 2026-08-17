@@ -15,28 +15,22 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     return (saved as Theme) || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
   });
 
-  // Sincroniza a barra de navegação/status do sistema (Android) com o tema.
-  // É chamada de forma SÍNCRONA no clique (toggleTheme) e também no efeito,
-  // para cobrir o carregamento e trocas externas de tema.
-  const applySystemTheme = (t: Theme) => {
-    const color = t === 'dark' ? '#0f172a' : '#ffffff';
-    const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', color);
-  };
-
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
+    const root = document.documentElement;
+    // Troca de tema INSTANTÂNEA (técnica do manoelja): desativa as transições
+    // CSS no instante da troca, para as cores (transition: all 0.2-0.3s) não
+    // animarem e causarem a "leve demora" ao alternar o tema.
+    root.classList.add('no-theme-transition');
+    root.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
-    applySystemTheme(theme);
+    // Força o layout para aplicar o novo tema no mesmo frame
+    // e reabilita as transições logo em seguida
+    root.getBoundingClientRect();
+    root.classList.remove('no-theme-transition');
   }, [theme]);
 
   const toggleTheme = () => {
-    const next: Theme = theme === 'light' ? 'dark' : 'light';
-    // Aplica a cor da barra do sistema de forma SÍNCRONA, antes do re-render —
-    // assim a troca não espera o ciclo do React (a única demora que resta é a
-    // animação própria do Chrome no Android, que não pode ser desativada via web).
-    applySystemTheme(next);
-    setTheme(next);
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
 
   return (

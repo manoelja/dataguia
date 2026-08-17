@@ -23,6 +23,16 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Desativa todas as transições durante a troca de tema (técnica do manoelja):
+   como as cores vêm de variáveis, sem isso o navegador re-animaria a página
+   inteira (transition: all 0.2-0.3s), causando a "leve demora" ao alternar. */
+html.no-theme-transition,
+html.no-theme-transition *,
+html.no-theme-transition *::before,
+html.no-theme-transition *::after {
+  transition: none !important;
+}
+
 /* Remove o atraso de 300ms de duplo-toque em controles (igual ao data-base-analysis) */
 button, a, [role="button"] {
   touch-action: manipulation;
