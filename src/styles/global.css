@@ -11,6 +11,10 @@ html, body {
   overscroll-behavior: none; /* Bloqueia o pull-to-refresh nativo no mobile (igual ao data-base-analysis) */
 }
 
+html {
+  background-color: var(--bg-primary);
+}
+
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-primary);
